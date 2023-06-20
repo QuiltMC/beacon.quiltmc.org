@@ -1,9 +1,22 @@
 version: "3.8"
 services:
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/app:rw
+    ports:
+      - "8000:8000"
     tty: true
+    depends_on:
+      - postgres
+    environment:
+        - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
