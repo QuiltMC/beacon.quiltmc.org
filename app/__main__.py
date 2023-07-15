@@ -16,7 +16,7 @@ async def signal_handler(request: web.Request) -> web.Response:
 
 
 async def main(loop: asyncio.AbstractEventLoop) -> web.Application:
-    """Construct the main applicaiton."""
+    """Construct the main application."""
     dsn = os.environ.get("DATABASE_URL", None)
 
     if not dsn:
